@@ -104,7 +104,14 @@
             );
 
             $(function(){
-                $('#submit').click(function(){
+                $('#submit').click(login);
+                $('#password').keypress(function(e){
+                    if(e.keyCode = 13){
+                        login();
+                    }
+                })
+
+                function login(){
                     var u = $('#username').val();
                     var p = $('#password').val();
                     if(u != 'winner' && p != 'winner'){
@@ -113,7 +120,7 @@
                     }
 
                     window.location.href = 'home.html';
-                })
+                }
             });
         </script>
        

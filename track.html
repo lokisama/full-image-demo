@@ -201,23 +201,6 @@
             // var json = {"log_id":450647981,"text":"我又来了，距离是远了点，但是环境适宜，食材新鲜，大都是包房，很适合朋友小聚，BTW脱鞋进入，厕所也相当干净，这个太重要了。交通方便，10号线就到，一馆二馆都行，二馆离地铁口近眼。可惜每次中午都没有吃到海胆，闺蜜有点失望，要么下次晚餐？可素晚餐吃不多啊，咋整","items":[{"positive_prob":0.963777,"sentiment":2,"confidence":0.919503,"negative_prob":0.0362235}]};
 
             // var json2 = {"log_id":249283985,"items":[{"sentiment":2,"adj":"新鲜","prop":"食材","end_pos":8,"abstract":"<span>食材新鲜</span>","begin_pos":0},{"sentiment":2,"adj":"小聚","prop":"适合","end_pos":14,"abstract":"很<span>适合朋友小聚</span>","begin_pos":2},{"sentiment":2,"adj":"干净","prop":"厕所","end_pos":14,"abstract":"<span>厕所也相当干净</span>","begin_pos":0},{"sentiment":2,"adj":"方便","prop":"交通","end_pos":8,"abstract":"<span>交通方便</span>","begin_pos":0},{"sentiment":2,"adj":"","prop":"海胆不错","end_pos":26,"abstract":"<span>可惜每次中午都没有吃到海胆</span>","begin_pos":0}]};
-
-
-            var excludeSpecial = function(s) {  
-                // 去掉转义字符  
-                s = s.replace(/[\'\"\\\/\b\f\n\r\t]/g, '');  
-                // 去掉特殊字符  
-                s = s.replace(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?]/g, '');  
-                return s;  
-            };
-
-            anlytics($('#text').val());
-
-            $("#submit").click(function(){
-
-                anlytics($('#text').val());
-            })
-
             var anlytics = function(text){
                 $.post("http://yq.icoos.cn:4999/bigNlp/getTagsAndSentiments?text="+excludeSpecial(text),{},function(data){
                     var json2 = data;
@@ -255,6 +238,24 @@
 
                 })
             }
+            
+
+            var excludeSpecial = function(s) {  
+                // 去掉转义字符  
+                s = s.replace(/[\'\"\\\/\b\f\n\r\t]/g, '');  
+                // 去掉特殊字符  
+                s = s.replace(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?]/g, '');  
+                return s;  
+            };
+
+            anlytics($('#text').val());
+
+            $("#submit").click(function(){
+
+                anlytics($('#text').val());
+            })
+
+            
             
         </script>
        

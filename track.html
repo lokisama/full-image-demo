@@ -109,7 +109,7 @@
                         <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                         <label class="control-label visible-ie8 visible-ie9">Username</label>
                         <div class="input-icon">
-                            <textarea id="text" style="width:100%;height:530px;padding-left:10px;" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="请输入待分析段落" name="username" id="username" ng-model="request.userName" /></textarea>
+                            <textarea id="text" style="width:100%;height:530px;padding-left:10px;" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="请输入待分析段落" name="username" id="username" ng-model="request.userName" />周末和闺蜜约了吃日料，几家高分日料店里看了半天评价，最后选择了这家，交通很方便，10号线四川北路上来，地铁直达商场地下。11点准时进去，装修非常五星酒店风，两个人不能选沙发位略可惜。饮料品种挺多，选了黑莓汁，很不错。刺身除了鳌虾之外齐全，海胆小青龙都畅吃。很新鲜。冰鲍，芝士焗蟹宝，生蚝扇贝都有，不过个人觉得冰鲍最好吃。除了常见的日料菜，这里还有咖喱虾，好大一个，黄咖喱挺入味的。雪蟹脚和鹅肝也都很不错。吃的很开心，下次再来。</textarea>
                         </div>
                     </div>
                     <div class="form-actions">
@@ -209,11 +209,17 @@
                 // 去掉特殊字符  
                 s = s.replace(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?]/g, '');  
                 return s;  
-             };  
+            };
+
+            anlytics($('#text').val());
 
             $("#submit").click(function(){
 
-                $.post("http://yq.icoos.cn:4999/bigNlp/getTagsAndSentiments?text="+excludeSpecial($('#text').val()),{},function(data){
+                anlytics($('#text').val());
+            })
+
+            var anlytics = function(text){
+                $.post("http://yq.icoos.cn:4999/bigNlp/getTagsAndSentiments?text="+excludeSpecial(text),{},function(data){
                     var json2 = data;
 
                     var items = '',senti = '';
@@ -237,7 +243,7 @@
                     $("#result2").html(items);
                 });
 
-                $.post("http://yq.icoos.cn:4999/bigNlp/rankSentiment?text="+excludeSpecial($('#text').val()),{},function(data){
+                $.post("http://yq.icoos.cn:4999/bigNlp/rankSentiment?text="+excludeSpecial(text),{},function(data){
                     
                     var json = data;
 
@@ -248,7 +254,7 @@
                     
 
                 })
-            })
+            }
             
         </script>
        

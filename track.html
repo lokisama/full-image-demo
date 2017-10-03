@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<!--[if !IE]><!-->
+<html lang="en" data-ng-app="SeanApp">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+
+    <head>
+        <title data-ng-bind="'OPS系统 | ' + $state.current.data.pageTitle"></title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="http://demo.cheaplify.com.au/YFOPS/dashboard/css/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+        <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN DYMANICLY LOADED CSS FILES(all plugin and page related styles must be loaded between GLOBAL and THEME css files ) -->
+        <link id="ng_load_plugins_before" />
+        <!-- END DYMANICLY LOADED CSS FILES -->
+        <!-- BEGIN THEME STYLES -->
+        <!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/global/css/components-md.min.css" id="style_components" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/layouts/layout5/css/layout.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/layouts/layout5/css/custom.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/dashboard/css/yfops.css" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/pages/css/login-4.min.css" rel="stylesheet" type="text/css" />
+        <style>
+            .login .logo {
+                margin:0!important;
+                padding: 15px;
+                text-align: center;
+            }
+            .col-lg-6 {
+                width: 48%!important;
+                margin-left:1%!important;
+            }
+            .tag{
+                display: block;
+                margin-right:4px;
+                color:rgba(254,288,135,1);
+            }
+            .prop{
+                background-color: #999;
+            }
+            .tag span{
+                display: inline-block;
+                padding:2px 4px;
+                margin-bottom:4px;
+                color:#fff;
+            }
+            .tag span:first-child{
+                
+                padding:2px 0px;
+            }
+            .senti0 span:nth-child(3){
+                background-color: rgba(226,60,60,1);
+                color:#fff;
+            }
+            .senti1 span:nth-child(3){
+                background-color: rgba(254,288,135,1);
+                color:#fff;
+
+            }
+            .senti2 span:nth-child(3){
+                background-color: rgba(60,141,65,1);
+                color:#fff;
+
+            }
+            .form-group{
+                color:#fff;
+            }
+
+            .level{
+                width:100%;
+                height:12px;
+                background-color: rgba(60,141,65,1);
+            }
+            .level .positive{
+                width:100%;
+                height:12px;
+                background-color: rgba(226,60,60,1);
+            }
+        </style>
+        
+        <!-- END THEME STYLES -->
+         </head>
+    <!-- END HEAD -->
+
+    <body ng-controller="AppController" class="page-header-fixed page-sidebar-closed-hide-logo page-on-load page-md login">
+    
+        <!-- BEGIN LOGO -->
+        <div class="logo">
+            
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN LOGIN -->
+        <div class="container-fluid">
+        <div class="row">
+            <div class="content col-lg-6 col-md-6 col-sm-6">
+                <!-- BEGIN LOGIN FORM -->
+                <form class="login-form"  method="post" name="loginForm" ng-submit="login(loginForm)" ng-validate="validationOptions">
+                    <h3 class="form-title">COOS餐饮自然语义分析（控制台）</h3>
+                    <div class="form-group">
+                        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                        <label class="control-label visible-ie8 visible-ie9">Username</label>
+                        <div class="input-icon">
+                            <textarea id="text" style="width:100%;height:530px;padding-left:10px;" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="请输入待分析段落" name="username" id="username" ng-model="request.userName" /></textarea>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                    <label class="control-label "></label>
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn green" id="submit"> 分析</button>
+                    </div>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="content col-lg-6 col-md-6 col-sm-6">
+                <!-- BEGIN LOGIN FORM -->
+                <form class="login-form"  method="post" name="loginForm" ng-submit="login(loginForm)" ng-validate="validationOptions">
+                    <h3 class="form-title">分析结果（情感）</h3>
+                    <div class="form-group">
+                        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                        <label class="control-label visible-ie8 visible-ie9">Username</label>
+                        <div id="result1" class="input-icon" style="height:180px;padding-left:10px;overflow: hidden;">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                    <div class="level">
+                        <div class="positive" ></div>
+                    </div>
+
+                    <label class="control-label ">
+                        <span>负面:<b class="negative_value"></b>%</span>
+                        <span>正面:<b class="positive_value"></b>%<span>
+                    </label>
+                    
+                    </div>
+                </form>
+
+                <form class="login-form"  method="post" name="loginForm" ng-submit="login(loginForm)" ng-validate="validationOptions">
+                    <h3 class="form-title">分析结果（标签）</h3>
+                    <div class="form-group">
+                        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                        <label class="control-label visible-ie8 visible-ie9">Username</label>
+                        <div id="result2" class="input-icon" style="height:200px;padding-left:10px">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                    <label class="control-label"></label>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        </div>
+        <!-- END LOGIN -->
+        <!-- BEGIN COPYRIGHT -->
+        <!-- <div class="copyright"> Powered by Cheaplify Australia Pty Ltd 2017 
+        </div> -->
+        <!-- END COPYRIGHT -->
+        <script src="http://demo.cheaplify.com.au/YFOPS/assets/global/plugins/jquery.min.js" type="text/javascript"></script>   
+        <script src="http://demo.cheaplify.com.au/YFOPS/assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+        <script src="http://demo.cheaplify.com.au/YFOPS/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            
+            toastr.options = {
+              "closeButton": true,
+              "debug": false,
+              "positionClass": "toast-top-center",
+              "onclick": null,
+              "showDuration": "3000",
+              "hideDuration": "3000",
+              "timeOut": "3000",
+              "extendedTimeOut": "3000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            };
+
+            $.backstretch([
+            "http://demo.cheaplify.com.au/YFOPS/dashboard/css/p8.jpg"
+            ], {
+              fade: 0,
+              duration: 10000
+            }
+            );
+
+// var json = {"log_id":248303183,"text":"餐厅周预订的午市套餐，138元/位（含服务费），面包、前菜（三选一）、主菜（三选一）、甜点（二选一）。 份量很足，肯定能吃饱，所以性价比还可以… 我们点的主菜是牛排，服务员也没问我们要积分熟的，导致牛排老了，这点差评…  前菜的生牛肉和虾的色拉都还不错，甜品就一般了……","items":[{"positive_prob":0.432711,"sentiment":0,"confidence":0.0384205,"negative_prob":0.567289}]};
+// var json2 = {"log_id":26985870,"items":[{"sentiment":2,"adj":"足","prop":"份量","end_pos":8,"abstract":"<span>份量很足</span>","begin_pos":0},{"sentiment":2,"adj":"还行","prop":"性价比","end_pos":16,"abstract":"所以<span>性价比还可以</span>…","begin_pos":4},{"sentiment":0,"adj":"老","prop":"牛排","end_pos":10,"abstract":"导致<span>牛排老</span>了","begin_pos":4},{"sentiment":2,"adj":"还不错","prop":"色拉","end_pos":30,"abstract":"前菜的生牛肉和虾的<span>色拉都还不错</span>","begin_pos":18},{"sentiment":0,"adj":"一般","prop":"甜品","end_pos":10,"abstract":"<span>甜品就一般</span>了……","begin_pos":0}]};
+
+            // var json = {"log_id":450647981,"text":"我又来了，距离是远了点，但是环境适宜，食材新鲜，大都是包房，很适合朋友小聚，BTW脱鞋进入，厕所也相当干净，这个太重要了。交通方便，10号线就到，一馆二馆都行，二馆离地铁口近眼。可惜每次中午都没有吃到海胆，闺蜜有点失望，要么下次晚餐？可素晚餐吃不多啊，咋整","items":[{"positive_prob":0.963777,"sentiment":2,"confidence":0.919503,"negative_prob":0.0362235}]};
+
+            // var json2 = {"log_id":249283985,"items":[{"sentiment":2,"adj":"新鲜","prop":"食材","end_pos":8,"abstract":"<span>食材新鲜</span>","begin_pos":0},{"sentiment":2,"adj":"小聚","prop":"适合","end_pos":14,"abstract":"很<span>适合朋友小聚</span>","begin_pos":2},{"sentiment":2,"adj":"干净","prop":"厕所","end_pos":14,"abstract":"<span>厕所也相当干净</span>","begin_pos":0},{"sentiment":2,"adj":"方便","prop":"交通","end_pos":8,"abstract":"<span>交通方便</span>","begin_pos":0},{"sentiment":2,"adj":"","prop":"海胆不错","end_pos":26,"abstract":"<span>可惜每次中午都没有吃到海胆</span>","begin_pos":0}]};
+
+
+            var excludeSpecial = function(s) {  
+                // 去掉转义字符  
+                s = s.replace(/[\'\"\\\/\b\f\n\r\t]/g, '');  
+                // 去掉特殊字符  
+                s = s.replace(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?]/g, '');  
+                return s;  
+             };  
+
+            $("#submit").click(function(){
+
+                $.post("http://yq.icoos.cn:4999/bigNlp/getTagsAndSentiments?text="+excludeSpecial($('#text').val()),{},function(data){
+                    var json2 = data;
+
+                    var items = '',senti = '';
+                    for(var i in json2.items){
+                        switch(json2.items[i].sentiment){
+                            case 0:
+                                senti = 'senti0';
+                                break;
+                            case 1:
+                                senti = 'senti1';
+                                break;
+                            case 2:
+                                senti = 'senti2';
+                                break;
+                            default:
+                                break;
+                        }
+
+                        items += "<div class='tag "+ senti+"'>"+json2.items[i].abstract+" <span class='prop'>" + json2.items[i].prop +"</span> <span class='adj'>" + json2.items[i].adj +"</span></div>";
+                    }
+                    $("#result2").html(items);
+                });
+
+                $.post("http://yq.icoos.cn:4999/bigNlp/rankSentiment?text="+excludeSpecial($('#text').val()),{},function(data){
+                    
+                    var json = data;
+
+                    $("#result1").html(json.text);
+                    $(".positive").css('width',json.items[0].negative_prob*100+'%');
+                    $(".positive_value").text(json.items[0].positive_prob*100);
+                    $(".negative_value").text(json.items[0].negative_prob*100);
+                    
+
+                })
+            })
+            
+        </script>
+       
+    </body>
+    <!-- END BODY -->
+
+</html>

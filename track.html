@@ -120,18 +120,19 @@
                     </div>
                 </form>
 
+                
+
             </div>
 
             <div class="content col-lg-6 col-md-6 col-sm-6">
                 <!-- BEGIN LOGIN FORM -->
                 <form class="login-form"  method="post" name="loginForm" ng-submit="login(loginForm)" ng-validate="validationOptions">
-                    <h3 class="form-title">分析结果（情感）</h3>
-                    <div class="form-group">
-                        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <h3 class="form-title">初步分析结果</h3>
+                    <!-- <div class="form-group">
                         <label class="control-label visible-ie8 visible-ie9">Username</label>
                         <div id="result1" class="input-icon" style="height:180px;padding-left:10px;overflow: hidden;">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-actions">
                     <div class="level">
                         <div class="positive" ></div>
@@ -146,11 +147,24 @@
                 </form>
 
                 <form class="login-form"  method="post" name="loginForm" ng-submit="login(loginForm)" ng-validate="validationOptions">
-                    <h3 class="form-title">分析结果（标签）</h3>
+                    <h3 class="form-title">情感分析</h3>
                     <div class="form-group">
                         <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                         <label class="control-label visible-ie8 visible-ie9">Username</label>
                         <div id="result2" class="input-icon" style="height:200px;padding-left:10px">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                    <label class="control-label"></label>
+                    </div>
+                </form>
+
+                <form class="login-form"  method="post" name="loginForm" ng-submit="login(loginForm)" ng-validate="validationOptions">
+                    <h3 class="form-title">深度学习</h3>
+                    <div class="form-group">
+                        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                        <label class="control-label visible-ie8 visible-ie9">Username</label>
+                        <div id="result3" class="input-icon" style="height:200px;padding-left:10px">
                         </div>
                     </div>
                     <div class="form-actions">
@@ -237,6 +251,26 @@
                     
 
                 })
+
+                $.post("http://35.192.110.145:5000/bigNlpGoogle/getSentimentsForSentences?text="+excludeSpecial(text),function(data){
+                    var json = data;
+                    json.singleSentences
+
+                    var items = '',senti = '';
+                    for(var i in json.singleSentences){
+                        
+                        if(json.singleSentences[i].score >=-1 && json.singleSentences[i].score < -0.25){
+                            senti = 'senti0';
+                        }else if(json.singleSentences[i].score >=-0.25 && json.singleSentences[i].score < 0.25){
+                            senti = 'senti1';
+                        }else if(json.singleSentences[i].score <= 1 && json.singleSentences[i].score >= 0.25){
+                            senti = 'senti2';
+                        }
+
+                        items += "<div class='tag "+ senti+"'><span >"+json.singleSentences[i].text+" </span><span></span><span class='adj'>" + json.singleSentences[i].score +"</span></div>";
+                    }
+                    $("#result3").html(items);
+                });
             }
             
 

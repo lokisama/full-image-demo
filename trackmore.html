@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--[if !IE]><!-->
+<html lang="en" data-ng-app="SeanApp">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+
+    <head>
+        <title data-ng-bind="'DoggieCloud | ' + $state.current.data.pageTitle"></title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="http://demo.cheaplify.com.au/YFOPS/dashboard/css/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+        <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN DYMANICLY LOADED CSS FILES(all plugin and page related styles must be loaded between GLOBAL and THEME css files ) -->
+        <link id="ng_load_plugins_before" />
+        <!-- END DYMANICLY LOADED CSS FILES -->
+        <!-- BEGIN THEME STYLES -->
+        <!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/global/css/components-md.min.css" id="style_components" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/layouts/layout5/css/layout.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/layouts/layout5/css/custom.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/dashboard/css/yfops.css" rel="stylesheet" type="text/css" />
+        <link href="http://demo.cheaplify.com.au/YFOPS/assets/pages/css/login-4.min.css" rel="stylesheet" type="text/css" />
+        <style>
+            .login .logo {
+                margin:0!important;
+                padding: 15px;
+                text-align: center;
+            }
+            .col-lg-6 {
+                width: 48%!important;
+                margin-left:1%!important;
+            }
+            .tag{
+                display: block;
+                margin-right:4px;
+                color:#fff;
+            }
+            .prop{
+                background-color: #999;
+            }
+            .tag span{
+                display: inline-block;
+                padding:2px 4px;
+                margin-bottom:4px;
+                color:#fff;
+            }
+            .tag span:first-child{
+                
+                padding:2px 0px;
+            }
+            .senti0 span:nth-child(3){
+                background-color: rgba(226,60,60,1);
+                color:#fff;
+            }
+            .senti1 span:nth-child(3){
+                background-color: rgba(254,288,135,1);
+                color:#333;
+
+            }
+            .senti2 span:nth-child(3){
+                background-color: rgba(60,141,65,1);
+                color:#fff;
+
+            }
+            .form-group{
+                color:#fff;
+            }
+
+            .level{
+                width:100%;
+                height:12px;
+                background-color: rgba(60,141,65,1);
+            }
+            .level .positive{
+                width:100%;
+                height:12px;
+                background-color: rgba(226,60,60,1);
+            }
+        </style>
+        
+        <!-- END THEME STYLES -->
+         </head>
+    <!-- END HEAD -->
+
+    <body ng-controller="AppController" class="page-header-fixed page-sidebar-closed-hide-logo page-on-load page-md login">
+    
+        <!-- BEGIN LOGO -->
+        <div class="logo">
+            
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN LOGIN -->
+        <div class="container-fluid">
+        <div class="row">
+            <div class="content " style="width:900px;">
+                <!-- BEGIN LOGIN FORM -->
+                <form class="login-form"  method="post" name="loginForm" ng-submit="login(loginForm)" ng-validate="validationOptions">
+                    <h3 class="form-title">全球快递查询大数据</h3>
+                    <div class="form-group">
+                        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                        <label class="control-label visible-ie8 visible-ie9">Username</label>
+                        <div class="input-icon">
+                            <textarea id="text" style="width:100%;height:34px;padding-left:10px;" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="请输入物流单号" name="number" /></textarea>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                    <label class="control-label "></label>
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn green" id="submit"> 查询</button>
+                    </div>
+                    </div>
+                </form>
+
+                 <form class="login-form"  method="post" name="loginForm" ng-submit="login(loginForm)" ng-validate="validationOptions">
+                    <h3 class="form-title">目的国家</h3>
+                    <div class="form-group">
+                        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                        <label class="control-label visible-ie8 visible-ie9">Username</label>
+                        <div id="result2" class="input-icon" style="min-height:10px;padding-left:10px">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                    <label class="control-label"></label>
+                    </div>
+                </form>
+                <form class="login-form"  method="post" name="loginForm" ng-submit="login(loginForm)" ng-validate="validationOptions">
+                    <h3 class="form-title">发件国家</h3>
+                    <div class="form-group">
+                        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                        <label class="control-label visible-ie8 visible-ie9">Username</label>
+                        <div id="result" class="input-icon" style="min-height:10px;padding-left:10px">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                    <label class="control-label"></label>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="content col-lg-6 col-md-6 col-sm-6">
+                
+
+            </div>
+
+        </div>
+        </div>
+        <!-- END LOGIN -->
+        <!-- BEGIN COPYRIGHT -->
+        <!-- <div class="copyright"> Powered by Cheaplify Australia Pty Ltd 2017 
+        </div> -->
+        <!-- END COPYRIGHT -->
+        <script src="http://demo.cheaplify.com.au/YFOPS/assets/global/plugins/jquery.min.js" type="text/javascript"></script>   
+        <script src="http://demo.cheaplify.com.au/YFOPS/assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+        <script src="http://demo.cheaplify.com.au/YFOPS/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            
+            toastr.options = {
+              "closeButton": true,
+              "debug": false,
+              "positionClass": "toast-top-center",
+              "onclick": null,
+              "showDuration": "3000",
+              "hideDuration": "3000",
+              "timeOut": "3000",
+              "extendedTimeOut": "3000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            };
+
+            $.backstretch([
+            "http://demo.cheaplify.com.au/YFOPS/dashboard/css/p8.jpg"
+            ], {
+              fade: 0,
+              duration: 10000
+            }
+            );
+
+            var json = {"lastForeignCountryEvent":{"time":"2017-08-05 11:45","event":"Delivered, In/At Mailbox, Your item was delivered in or at the mailbox at 11:45 am on August 5, 2017 in KENT, WA 98042.","country":""},"localCountryEvents":[{"time":"2017-08-05 11:45","event":"妥投","country":""},{"time":"2017-08-05 04:02","event":"到达投递局","country":"美国"},{"time":"2017-08-05 03:29","event":"到达投递局","country":""},{"time":"2017-07-26 11:23","event":"离开深圳市 发往深圳邮政速递公司中快（香港）业务部","country":"深圳市"},{"time":"2017-07-26 11:23","event":"离开深圳市 发往芝加哥","country":"深圳市"},{"time":"2017-07-24 20:37","event":"深圳市邮政速递物流公司国际业务分公司已收件（揽投员姓名：张小枫,联系电话:）","country":"深圳市"}],"foreignCountryEvents":[{"time":"2017-08-05 11:45","event":"Delivered, In/At Mailbox, Your item was delivered in or at the mailbox at 11:45 am on August 5, 2017 in KENT, WA 98042.","country":""},{"time":"2017-08-05 08:15","event":"Out for Delivery","country":""},{"time":"2017-08-05 08:05","event":"Sorting Complete","country":""},{"time":"2017-08-05 04:02","event":"Arrived at Unit","country":""},{"time":"2017-08-05 00:30","event":"Arrived at USPS Regional Facility","country":""},{"time":"2017-08-04 23:52","event":"Departed USPS Regional Facility","country":""},{"time":"2017-08-04 20:50","event":"Arrived at USPS Regional Destination Facility","country":""},{"time":"2017-08-03 02:24","event":"Departed USPS Regional Facility","country":""},{"time":"2017-08-02 16:11","event":"Arrived at USPS Regional Facility","country":""},{"time":"2017-07-26 09:47","event":"Processed Through Facility","country":"CHINA"},{"time":"2017-07-24 20:37","event":"Origin Post is Preparing Shipment","country":""},{"time":"2017-07-24 20:37","event":"Acceptance","country":"CHINA"}]};
+
+            
+
+            var anlytics = function(data){
+                if(data.foreignCountryEvents == null){
+                    $("#result").html('查无记录');
+                    $("#result2").html('查无记录');
+                    return;
+                }
+
+                var items = '',senti = '';
+                for(var i in data.foreignCountryEvents){
+                    
+                    items += "<div class='tag'>"+data.foreignCountryEvents[i].time+" <span class='prop' >" + data.foreignCountryEvents[i].event +"</span> <span>" + data.foreignCountryEvents[i].country +"</span></div>";
+                }
+                $("#result2").html(items);
+
+                items = '';
+                for(var i in data.localCountryEvents){
+                    
+                    items += "<div class='tag'>"+data.localCountryEvents[i].time+" <span class='prop' >" + data.localCountryEvents[i].event +"</span> <span >" + data.localCountryEvents[i].country +"</span></div>";
+                }
+                $("#result").html(items);
+
+            }
+            
+            // anlytics(json);
+
+            
+
+            var excludeSpecial = function(s) {  
+                // 去掉转义字符  
+                s = s.replace(/[\'\"\\\/\b\f\n\r\t]/g, '');  
+                // 去掉特殊字符  
+                s = s.replace(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?]/g, '');  
+                return s;  
+            };
+
+
+            $("#submit").click(function(){
+
+                if( $('#text').val() == ""){
+                    return;
+                }
+
+                $.post("http://yq.icoos.cn:4999/bigTracking/track?no="+$('#text').val(),{},function(data){
+
+
+                    anlytics(data);
+                });
+            })
+
+            
+            
+        </script>
+       
+    </body>
+    <!-- END BODY -->
+
+</html>

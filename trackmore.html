@@ -227,9 +227,11 @@
                     return;
                 }
 
+                $("#submit").attr('disabled','disabled').html("查询中...");
                 $.post("http://yq.icoos.cn:4999/bigTracking/track?no="+$('#text').val(),{},function(data){
 
                     anlytics(data);
+                    $("#submit").removeAttr('disabled').html("查询");
                 });
             }
 

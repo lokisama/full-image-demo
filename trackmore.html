@@ -188,6 +188,9 @@
             );
             
             var anlytics = function(data){
+                $("#result").html('查无记录');
+                $("#result2").html('查无记录');
+
                 if(data.foreignCountryEvents == null){
                     $("#result").html('查无记录');
                     $("#result2").html('查无记录');
@@ -228,7 +231,14 @@
                 }
 
                 $("#submit").attr('disabled','disabled').html("查询中...");
+
+                $("#result").html('查询中...');
+                $("#result2").html('查询中...');
+
                 $.post("http://yq.icoos.cn:4999/bigTracking/track?no="+$('#text').val(),{},function(data){
+
+                    $("#result").html('');
+                    $("#result2").html('');
 
                     anlytics(data);
                     $("#submit").removeAttr('disabled').html("查询");

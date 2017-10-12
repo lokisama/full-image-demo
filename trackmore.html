@@ -109,7 +109,7 @@
                         <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                         <label class="control-label visible-ie8 visible-ie9">Username</label>
                         <div class="input-icon">
-                            <textarea id="text" style="width:100%;height:34px;padding-left:10px;" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="请输入物流单号" name="number" />LW590500672CN</textarea>
+                            <textarea id="text" style="width:100%;height:34px;padding-left:10px;" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="请输入物流单号" name="number" />9261299992140492102041</textarea>
                         </div>
                     </div>
                     <div class="form-actions">
@@ -120,19 +120,8 @@
                     </div>
                 </form>
 
-                 <form class="login-form"  method="post" name="loginForm" ng-submit="login(loginForm)" ng-validate="validationOptions">
-                    <h3 class="form-title">目的国家</h3>
-                    <div class="form-group">
-                        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                        <label class="control-label visible-ie8 visible-ie9">Username</label>
-                        <div id="result2" class="input-icon" style="min-height:10px;padding-left:10px">
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                    <label class="control-label"></label>
-                    </div>
-                </form>
-                <form class="login-form"  method="post" name="loginForm" ng-submit="login(loginForm)" ng-validate="validationOptions">
+                
+                <form class="login-form"  method="post" name="loginForm">
                     <h3 class="form-title">发件国家</h3>
                     <div class="form-group">
                         <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
@@ -140,8 +129,15 @@
                         <div id="result" class="input-icon" style="min-height:10px;padding-left:10px">
                         </div>
                     </div>
-                    <div class="form-actions">
-                    <label class="control-label"></label>
+                </form>
+
+                 <form class="login-form"  method="post" name="loginForm" id="dist">
+                    <h3 class="form-title">目的国家</h3>
+                    <div class="form-group">
+                        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                        <label class="control-label visible-ie8 visible-ie9">Username</label>
+                        <div id="result2" class="input-icon" style="min-height:10px;padding-left:10px">
+                        </div>
                     </div>
                 </form>
 
@@ -199,6 +195,12 @@
                 }
                 $("#result2").html(items);
 
+                if(data.foreignCountryEvents.length == 0){
+                    $("#dist").hide();
+                }else{
+                    $("#dist").show();
+                }
+
                 items = '';
                 for(var i in data.localCountryEvents){
                     
@@ -230,7 +232,7 @@
                 $("#result").html('查询中...');
                 $("#result2").html('查询中...');
 
-                $.post("http://yq.icoos.cn:4999/bigTracking/track?no="+$('#text').val(),{},function(data){
+                $.get("http://yq.icoos.cn:4999/bigTracking/track?no="+$('#text').val(),{},function(data){
 
                     $("#result").html('');
                     $("#result2").html('');

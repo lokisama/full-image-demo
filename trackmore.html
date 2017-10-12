@@ -121,7 +121,7 @@
                 </form>
 
                 
-                <form class="login-form"  method="post" name="loginForm">
+                <form class="login-form"  method="post" name="loginForm" id="from">
                     <h3 class="form-title">发件国家</h3>
                     <div class="form-group">
                         <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
@@ -131,7 +131,7 @@
                     </div>
                 </form>
 
-                 <form class="login-form"  method="post" name="loginForm" id="dist">
+                 <form class="login-form"  method="post" name="loginForm" id="to">
                     <h3 class="form-title">目的国家</h3>
                     <div class="form-group">
                         <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
@@ -179,10 +179,11 @@
             );
             
             var anlytics = function(data){
+
                 $("#result").html('查无记录');
                 $("#result2").html('查无记录');
 
-                if(data.foreignCountryEvents == null){
+                if(data.foreignCountryEvents == null && data.localCountryEvents == null){
                     $("#result").html('查无记录');
                     $("#result2").html('查无记录');
                     return;
@@ -190,23 +191,31 @@
 
                 var items = '',senti = '';
                 for(var i in data.foreignCountryEvents){
-                    
-                    items += "<div class='tag'>"+data.foreignCountryEvents[i].time+" <span class='prop' >" + data.foreignCountryEvents[i].event +"</span> <span>" + data.foreignCountryEvents[i].country +"</span></div>";
+                    var country = data.foreignCountryEvents[i].country == null ? "" : data.foreignCountryEvents[i].country ;
+                    items += "<div class='tag'>"+data.foreignCountryEvents[i].time+" <span class='prop' >" + data.foreignCountryEvents[i].event +"</span> <span>" + country +"</span></div>";
                 }
+
                 $("#result2").html(items);
 
-                if(data.foreignCountryEvents.length == 0){
-                    $("#dist").hide();
+                if(data.foreignCountryEvents == null || data.foreignCountryEvents.length == 0){
+                    $("#to").hide();
                 }else{
-                    $("#dist").show();
+                    $("#to").show();
                 }
 
                 items = '';
                 for(var i in data.localCountryEvents){
-                    
-                    items += "<div class='tag'>"+data.localCountryEvents[i].time+" <span class='prop' >" + data.localCountryEvents[i].event +"</span> <span >" + data.localCountryEvents[i].country +"</span></div>";
+                    var country = data.localCountryEvents[i].country == null ? "" : data.localCountryEvents[i].country ;
+                    items += "<div class='tag'>"+data.localCountryEvents[i].time+" <span class='prop' >" + data.localCountryEvents[i].event +"</span> <span >" + country +"</span></div>";
                 }
+
                 $("#result").html(items);
+
+                if(data.localCountryEvents == null || data.localCountryEvents.length == 0){
+                    $("#from").hide();
+                }else{
+                    $("#from").show();
+                }
 
             }
             

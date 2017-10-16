@@ -236,6 +236,8 @@
                     return;
                 }
 
+                localStorage.setItem('trackNo',$('#text').val());
+
                 $("#submit").attr('disabled','disabled').html("查询中...");
 
                 $("#result").html('查询中...');
@@ -251,6 +253,10 @@
                 });
             }
 
+            if(localStorage.getItem('trackNo')){
+                $('#text').val(localStorage.getItem('trackNo'));
+            }
+            
             submit();
 
 

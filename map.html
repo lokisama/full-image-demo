@@ -4,11 +4,11 @@
 
 <head>
     <!-- 原始地址：http://webapi.amap.com/ui/1.0/ui/misc/MarkerList/examples/index.html -->
-    <base href="http://webapi.amap.com/ui/1.0/ui/misc/MarkerList/examples/" />
+    <!-- <base href="http://webapi.amap.com/ui/1.0/ui/misc/MarkerList/examples/" /> -->
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <title>完整示例</title>
-    <link rel="stylesheet" type="text/css" href="./index.css">
+    <link rel="stylesheet" type="text/css" href="http://webapi.amap.com/ui/1.0/ui/misc/MarkerList/examples//index.css">
 </head>
 
 <body>
@@ -20,10 +20,10 @@
         </div>
         <ul id="btnList">
             <li>
-                <input value="美食数据" type="button" data-path="http://ditu.amap.com/service/poiInfo?query_type=TQUERY&pagesize=20&pagenum=1&qii=true&cluster_state=5&need_utd=true&utd_sceneid=1000&div=PC1000&addr_poi_merge=true&is_classify=true&zoom=17&city=310000&geoobj=121.402345%7C31.160837%7C121.407495%7C31.166291&_src=around&keywords=%E7%BE%8E%E9%A3%9F" />
+                <input value="美食数据" type="button" data-path="rest.json" />
             </li>
             <li>
-                <input value="酒店数据" type="button" data-path="http://ditu.amap.com/service/poiInfo?query_type=TQUERY&pagesize=20&pagenum=1&qii=true&cluster_state=5&need_utd=true&utd_sceneid=1000&div=PC1000&addr_poi_merge=true&is_classify=true&zoom=17&city=310000&geoobj=121.402345%7C31.160837%7C121.407495%7C31.166291&_src=around&keywords=%E7%BE%8E%E9%A3%9F" />
+                <input value="酒店数据" type="button" data-path="rest.json" />
             </li>
             <li>
                 <input value="选中第一个" type="button" data-enable='markerList.getData().length>0' data-eval='markerList.selectByDataIndex(0)' />
